@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Angular JS app</title>
+    <script src="https://code.angularjs.org/1.5.8/angular.min.js"></script>
+    <script src="js/script.js"></script>
+</head>
+<body ng-app="angularApp">
+    <label class="form">
+        <label for="search">Search <span ng-if="query"> for: {{query}}</span></label><br>
+        <input type="text" id="search" ng-model="query"><br>
+        <label>
+            <input type="radio" name="ordering" checked ng-model="listOrder">ASC
+        </label>
+        <label>
+            <input type="radio" name="ordering" value="reverse" ng-model="listOrder">DESC
+        </label>
+    </div>
+    <div ng-controller="appController">
+        <h1>List of users</h1>
+        <div ng-repeat="user in users | filter: query | orderBy: 'name' : listOrder">
+            <h4>{{user.name}}</h4>
+            <p><img ng-src="{{user.picture}}" alt="{{user.name}}"></p>
+            <p>{{user.about}}</p>
+        </div>
+    </div>
+    <p>Pictures source : https://randomuser.me/api/ </p>
+    <p>JSON data source : https://www.json-generator.com/ </p>
+</body>
+</html>
